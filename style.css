@@ -1,0 +1,253 @@
+ body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #d6e9ed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            perspective: 1000px;
+        }
+
+        .card-container {
+            position: relative;
+            width: 450px; /* Increased width */
+            height: 600px;
+            transform-style: preserve-3d;
+            transition: transform 1.5s ease-in-out;
+        }
+        
+        .card-container.open {
+            transform: rotateY(-180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .front {
+            background: linear-gradient(135deg, #e0f2f7, #f0fdf4);
+            z-index: 2;
+            cursor: pointer;
+        }
+        .front:hover {
+            /* transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1.02); */
+            box-shadow: 0 35px 60px rgba(68, 8, 163, 0.5), 0 8px 15px rgba(76,28,200,0.9), 0 0 40px rgba(2435, 62, 62, 0.5);
+        }
+
+        .back {
+            background: linear-gradient(135deg, #e0f2f7, #f0fdf4);
+            transform: rotateY(180deg);
+            z-index: 1;
+        }
+        .back:hover {
+            /* transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1.02); */
+            box-shadow: 0 35px 60px rgba(68, 8, 163, 0.5), 0 8px 15px rgba(76, 28, 200, 0.9), 0 0 40px rgba(235, 62, 62, 0.5);
+        }
+
+        .border-frame {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid gold;
+            border-radius: 15px;
+            animation: gold-glow 2s infinite alternate;
+        }
+
+        @keyframes gold-glow {
+            from { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+            to { box-shadow: 0 0 15px rgba(255, 215, 0, 0.9); }
+        }
+
+        .watermark-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 80px;
+            color: rgba(189, 195, 199, 0.4);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg);
+        }
+
+        .front-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #4b5563;
+            margin-top: 50px;
+        }
+
+        .back-content {
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 1.5s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .back-content h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #4b5563;
+        }
+
+        .back-content p {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+        
+        .details-box {
+            margin-top: 20px;
+            background-color: rgba(207, 237, 248, 0.7);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .details-box:hover{
+       box-shadow: 0 35px 60px rgba(210, 8, 129, 0.5), 0 8px 15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(215, 14, 208, 0.5);
+
+        }
+
+        .social-links {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: fadeIn 1.5s forwards 1.5s;
+        }
+
+        .rsvp-button {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 16px;
+            border: 2px solid rgb(18, 18, 17);
+            border-radius: 25px;
+            background: linear-gradient(to right, #fefce8, #fef9c3);
+            color: #4b5563;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #fef9c3, #fefce8);
+            box-shadow: 0 35px 60px rgba(154, 7, 7, 0.5), 0 8px 15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(206, 14, 14, 0.5);
+        }
+        
+        .social-links a {
+            text-decoration: none;
+            bottom:10%;
+            color: #4b5563;
+            margin-left:5px;
+        }
+
+        .social-links svg {
+            font-size: 30px;
+        }
+        
+        /* Party Clipart Animations */
+        .clipart {
+            position: absolute;
+            font-size: 30px;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+            opacity: 0.8;
+            transition: opacity 0.5s;
+        }
+
+        .clipart.star-1 {
+            top: 10%;
+            left: 5%;
+            animation-name: float;
+            animation-duration: 4s;
+        }
+        
+        .clipart.star-2 {
+            bottom: 15%;
+            right: 10%;
+            animation-name: float-reverse;
+            animation-duration: 5s;
+        }
+        
+        .clipart.dance-1 {
+            top: 5%;
+            right: 5%;
+            animation-name: dance;
+            animation-duration: 3s;
+        }
+        
+        .clipart.dance-2 {
+            bottom: 5%;
+            left: 5%;
+            animation-name: dance-reverse;
+            animation-duration: 3s;
+            animation-delay: 0.5s;
+        }
+        
+        .clipart.note-1 {
+            top: 20%;
+            left: 20%;
+            animation-name: music-note-float;
+            animation-duration: 4s;
+            animation-delay: 1s;
+        }
+        
+        .clipart.note-2 {
+            bottom: 20%;
+            right: 20%;
+            animation-name: music-note-float;
+            animation-duration: 5s;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(20px) rotate(-10deg); }
+        }
+        
+        @keyframes dance {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(10deg); }
+        }
+        
+        @keyframes dance-reverse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(-10deg); }
+        }
+        
+        @keyframes music-note-float {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-50px); opacity: 0; }
+        }
